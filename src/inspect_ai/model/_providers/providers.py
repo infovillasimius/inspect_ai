@@ -98,6 +98,28 @@ def hf() -> type[ModelAPI]:
     return HuggingFaceAPI
 
 
+@modelapi(name="repeng")
+def repeng_provider() -> type[ModelAPI]:
+    try:
+        from .repEng import RepEngAPI
+    except ImportError:
+        raise pip_dependency_error(
+            "RepEng Models", ["torch", "transformers", "accelerate", "bitsandbytes", "repeng"]
+        )
+    return RepEngAPI
+
+
+@modelapi(name="twin")
+def twin() -> type[ModelAPI]:
+    try:
+        from .twin import TwinMetaProviderAPI
+    except ImportError:
+        raise pip_dependency_error(
+            "Twin Guardian Models", ["https"]
+        )
+    return TwinMetaProviderAPI
+
+
 @modelapi(name="vllm")
 def vllm() -> type[ModelAPI]:
     # Only validate OpenAI compatibility (needed for the API interface)

@@ -24,6 +24,7 @@ class OllamaAPI(OpenAICompatibleAPI):
             service="Ollama",
             service_base_url="http://localhost:11434/v1",
             emulate_tools=emulate_tools,
+            client_timeout=1800,
         )
 
     @override
