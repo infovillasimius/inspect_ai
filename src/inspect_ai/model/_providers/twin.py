@@ -190,7 +190,7 @@ class TwinMetaProviderAPI(ModelAPI):
         # Initialize JSONL logger singleton
         self.guardian_logger = get_shared_json_logger(
             model_name=self.target_model_spec,
-            guardian_model=self.guardian_model_spec,
+            guardian_model=self.guardian_model_spec if self.check_system_prompt else None,
             target_model=self.target_model_spec,
             auditor_model=self.auditor_model_spec,
             judge_model=self.judge_model_spec,
@@ -200,7 +200,7 @@ class TwinMetaProviderAPI(ModelAPI):
         # Initialize Debug text logger singleton
         self.guardian_debug_logger = get_shared_logger(
             model_name=self.target_model_spec,
-            guardian_model=self.guardian_model_spec,
+            guardian_model=self.guardian_model_spec if self.check_system_prompt else None,
             target_model=self.target_model_spec,
             auditor_model=self.auditor_model_spec,
             judge_model=self.judge_model_spec,
